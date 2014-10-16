@@ -1,0 +1,108 @@
+
+# Javascript library of auxiliary functions for daily programming
+
+
+
+A collection of routines for programming in javascript
+
+## Dependencies
+
+no dependencies, works with commonJs, amd, or browser global
+
+## Usage Examples
+
+```javascript
+	var log = ß.Logger({
+    'storeTime': true,
+    'id': 1,
+    'fs': fs,
+    'filePath': 'tstlog.txt'
+});
+
+var logU = ß.Logger({
+    'util': util,
+    'defaultDepth': 2
+});
+
+/*testing memoize*/
+var tstCache = {};
+var pnk = ß.memoize(þ.pNK, {
+    limit: 100,
+    cache: tstCache
+});
+
+
+/*set up for caseof*/
+var cases = {
+    '1': function() {
+        logU.log(pnk(10, ~~ (10 * Math.random())));
+    },
+    '2': function() {
+        logU.log(pnk(100, ~~ (100 * Math.random())));
+    },
+    'default': function() {
+        logU.log('default');
+
+    }
+};
+
+var caseSwitch = ß.caseOf(cases);
+
+for (var ii = 0; ii < 5000; ++ii) {
+    caseSwitch(~~(Math.random() * 3));
+}
+
+ii = 0;
+for (var x in tstCache) {
+    ii++;
+}
+logU.log(ii);
+logU.log(tstCache);
+		
+	// Create the TimeSeries client
+	//
+	// "stats" is the Redis namespace which will be used
+	// for storing all the TimeSeries related keys
+    //
+	// "granularities" encodes the granularities at which
+	// you want to store statistics. More on that in the next section
+	//
+	var ts = new TimeSeries(redis, "stats", granularities);
+	
+	// Recording hits
+	//
+	// This increments the counters for the
+	// stats keys you provide
+	//
+	// "timestamp" defaults to the current time
+    // "increment" defaults to 1
+	//
+	ts.recordHit('your_stats_key')
+	  .recordHit('another_stats_key', timestamp)
+      .recordHit('another_stats_key', timestamp2, increment)
+	  …
+	  .exec();
+
+    // Removing hits
+    //
+    // It's also possible to decrement the hits counter for
+    // some key
+    ts.removeHit('your_stats_key', [timestamp]).exec();
+	  
+	// Querying statistics
+	//
+	// Returns "count" chunks of counters at the precision described by
+	// "granularity_label"
+	// 
+	ts.getHits('your_stats_key', granularity_label, count, function(err, data) {
+		// data.length == count
+		// data = [ [ts1, count1], [ts2, count2]... ]
+	});
+```
+
+
+
+
+
+
+
