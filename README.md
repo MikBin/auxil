@@ -6,12 +6,14 @@ A collection of routines for programming in javascript
 
 ## Dependencies
 
-no dependencies, works with commonJs, amd, or browser global
+no dependencies, it works with commonJs, amd, or browser global
 
 ## Usage Examples
 
 ```javascript
 	var auxil = require('./auxil');
+	var util = require('util');
+	var fs = require('fs');
 
 	/*example of logging to file*/
 	var log = auxil.Logger({
@@ -27,7 +29,7 @@ no dependencies, works with commonJs, amd, or browser global
     	'defaultDepth': 2
 	});
 
-	/*recoursive fibonacci to use in memoize*/
+	/*recursive fibonacci to use in memoize*/
 	function fibonacci(n) {
    		if (n < 2){
      		return 1;
@@ -43,7 +45,7 @@ no dependencies, works with commonJs, amd, or browser global
 	});
 
 
-	/*set up for caseof*/
+	/*set up for caseOf*/
 	var cases = {
     	'1': function() {
         	log.log(fib(~~ (10 * Math.random())));
@@ -57,7 +59,7 @@ no dependencies, works with commonJs, amd, or browser global
     	}
 	};
 
-	/*testing caseOf and memoize method*/
+	/*testing caseOf and memoize methods*/
 	var caseSwitch = auxil.caseOf(cases);
 
 	for (var i = 0; i < 5000; ++i) {
